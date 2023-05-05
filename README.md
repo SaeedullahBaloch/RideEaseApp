@@ -1,5 +1,39 @@
 # test
 
+Work Distribution:
+
+Shujat Screens work:
+
+customer-home.dart, 
+customer-login.dart, 
+customer-menu.dart, 
+customer-singup.dart, 
+destination.dart, 
+driver-drop-off-map.dart, 
+driver-home.dart, driver-login.dart 
+
+Ammar Ahmed Screens Work:
+
+driver-signup.dart 
+drivers-menu.dart 
+finding-nearby-riders.dart  
+one-the-way.dart 
+one-the-way-to-customer-location.dart 
+reached-at-location.dart 
+reached-at-location-KWn.dart 
+
+Saeed ullah:
+
+intro.dart
+reset-password-customer.dart 
+ reset-password-driver.dart 
+ riders-requests.dart 
+ splash-screen.dart 
+ vehicle-details.dart 
+ verification-customer.dart 
+ verification-driver.dart 
+
+
 A new Flutter project.
 
 ## Getting Started
