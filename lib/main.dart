@@ -1,45 +1,37 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:myapp/utils.dart';
-import 'package:myapp/page-1/splash-screen.dart';
-// import 'package:myapp/page-1/intro.dart';
-// import 'package:myapp/page-1/driver-login.dart';
-// import 'package:myapp/page-1/customer-singup.dart';
-// import 'package:myapp/page-1/driver-signup.dart';
-// import 'package:myapp/page-1/vehicle-details.dart';
- import 'package:myapp/page-1/customer-home.dart';
-// import 'package:myapp/page-1/finding-nearby-riders.dart';
-// import 'package:myapp/page-1/riders-requests.dart';
-// import 'package:myapp/page-1/driver-home.dart';
-// import 'package:myapp/page-1/one-the-way.dart';
-// import 'package:myapp/page-1/destination.dart';
-// import 'package:myapp/page-1/customer-login.dart';
-// import 'package:myapp/page-1/verification-driver.dart';
-// import 'package:myapp/page-1/drivers-menu.dart';
-// import 'package:myapp/page-1/customer-menu.dart';
-// import 'package:myapp/page-1/reset-password-driver.dart';
-// import 'package:myapp/page-1/reset-password-customer.dart';
-// import 'package:myapp/page-1/verification-customer.dart';
-// import 'package:myapp/page-1/one-the-way-to-customer-location.dart';
-// import 'package:myapp/page-1/reached-at-location.dart';
-// import 'package:myapp/page-1/driver-drop-off-map.dart';
-// import 'package:myapp/page-1/reached-at-location-KWn.dart';
+import 'dart:async';
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:myapp/CustomerScreens/dashboard_page.dart';
+import 'package:myapp/PhoneSignUp.dart';
+import 'package:myapp/destination.dart';
+import 'package:myapp/intro.dart';
+import 'package:myapp/login_page.dart';
+import 'package:myapp/CustomerScreens/signup_page_Customer.dart';
+import 'package:myapp/DriverScreens/signup_page_Driver.dart';
+import 'package:myapp/CustomerScreens/BookRideScreen.dart';
+import 'package:myapp/reached-at-location.dart';
 
-void main() => runApp(MyApp());
+import 'firebase_options.dart';
+void main() async {
+	WidgetsFlutterBinding.ensureInitialized();
+			await Firebase.initializeApp(
+				options: DefaultFirebaseOptions.currentPlatform,
+			);
 
+			runApp(MyApp());
+		}
 class MyApp extends StatelessWidget {
 	@override
 	Widget build(BuildContext context) {
-	return MaterialApp(
-		title: 'Flutter',
-		debugShowCheckedModeBanner: false,
-		scrollBehavior: MyCustomScrollBehavior(),
-		theme: ThemeData(
-		primarySwatch: Colors.blue,
-		),
-		home: CustomerHome(),
-	);
+		return MaterialApp(
+			debugShowCheckedModeBanner: false,
+			home: PhoneSignUpScreen(),
+		);
 	}
 }
+
