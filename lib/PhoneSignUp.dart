@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/CustomerScreens/verification-customer.dart';
 
+
+
 class PhoneSignUpScreen extends StatelessWidget {
 
 
@@ -65,8 +67,8 @@ class PhoneSignUpScreen extends StatelessWidget {
             Align(
               alignment: Alignment.bottomRight,
               child: FloatingActionButton(
-                
-              
+
+
                 onPressed: () async{
 
                   try{
@@ -97,7 +99,7 @@ class PhoneSignUpScreen extends StatelessWidget {
 
 
                 },
-                
+
                 child: Icon(Icons.arrow_forward),
               ),
             ),

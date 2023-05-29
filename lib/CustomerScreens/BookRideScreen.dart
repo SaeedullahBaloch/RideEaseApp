@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:myapp/Drawer.dart';
 
 class BookRideScreen extends StatelessWidget {
   static const CameraPosition _kGooglePlex = CameraPosition(
@@ -10,11 +11,43 @@ class BookRideScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar:  AppBar(title:
+
+
+        Row(
+          children: [
+            Padding(padding: EdgeInsets.only(left: 100)),
+            Text(
+              'Ride',
+              style: TextStyle(
+                fontSize: 25.0,
+                fontWeight: FontWeight.w700,
+                color: Colors.black,
+              ),
+            ),
+
+            Text(
+              'Ease.',
+              style: TextStyle(
+                fontSize: 25.0,
+                fontWeight: FontWeight.w700,
+                color: Color(0xff0025ab),
+              ),
+            ),
+          ],
+        ),
+          toolbarHeight: 60,
+          centerTitle: true,
+          backgroundColor: Colors.white,
+          iconTheme: const IconThemeData(color: Colors.black),
+          elevation: 10.0,
+        ),
+
       body: Stack(
         children: [
           // Google Map
           Padding(
-            padding: const EdgeInsets.only(top: 90),
+            padding: const EdgeInsets.only(top: 0),
             child: Container(
               child: GoogleMap(
                 mapType: MapType.normal,
@@ -29,36 +62,13 @@ class BookRideScreen extends StatelessWidget {
             padding: EdgeInsets.only(top: 40),
             child: Row(
               children: [
-                Positioned(
-                  top: 0,
-                  left: 16,
-                  child: IconButton(
-                    icon: Icon(Icons.menu),
-                    onPressed: () {
-                      // TODO: Handle menu button pressed
-                    },
-                  ),
-                ),
+
                 Container(
                   child: Row(
                     children: [
-                      Padding(padding: EdgeInsets.only(left: 100)),
-                      Text(
-                        'Ride',
-                        style: TextStyle(
-                          fontSize: 25.0,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.black,
-                        ),
-                      ),
-                      Text(
-                        'Ease.',
-                        style: TextStyle(
-                          fontSize: 25.0,
-                          fontWeight: FontWeight.w700,
-                          color: Color(0xff0025ab),
-                        ),
-                      ),
+
+
+
                     ],
                   ),
                 ),
@@ -170,6 +180,8 @@ class BookRideScreen extends StatelessWidget {
           ),
         ],
       ),
+
+        drawer: MyHeaderDrawer()
     );
   }
 }

@@ -1,166 +1,124 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:myapp/login_page.dart';
 
-void main() {
-  runApp(EaseRideApp());
-}
+TextEditingController _controller = TextEditingController();
 
-class EaseRideApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'EaseRide',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: IntroScreen(),
-    );
-  }
-}
-
-class IntroScreen extends StatefulWidget {
-  @override
-  _IntroScreenState createState() => _IntroScreenState();
-}
-
-class _IntroScreenState extends State<IntroScreen> {
-  late PageController _pageController;
-  int _currentPage = 0;
-  List<String> _slideImages = [
-    'assets/images/Slide1.png', // Replace with your image asset path
-    'assets/images/Slide2.png', // Replace with your image asset path
-  ];
-
-  @override
-  void initState() {
-    super.initState();
-    _pageController = PageController();
-    _pageController.addListener(() {
-      setState(() {
-        _currentPage = _pageController.page!.round();
-      });
-    });
-  }
-
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
-  }
-
+class IntroScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       body: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 100),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                RichText(
-                  text: TextSpan(
-                    style: GoogleFonts.inter(
-                      fontSize: 36,
-                      fontWeight: FontWeight.w700,
-                      height: 1.2,
-                      color: Colors.black,
-                    ),
-                    children: [
-                      TextSpan(text: 'Ride'),
-                      TextSpan(
-                        text: 'Ease.',
-                        style: TextStyle(color: Color(0xff0025ab)),
-                      ),
-                    ],
-                  ),
-                ),
+          const SizedBox(height:100),
+          // Logo
+          Image.asset('assets/images/RideEase.png'),
+
+          const SizedBox(height:50),
+          SizedBox(height:15 ,),
+          SizedBox(
+            height: 250, // Change the height here
+            child: CarouselSlider(
+              items: [
+                Image.asset('assets/images/Slide1.png'),
+                Image.asset('assets/images/Slide2.png')
+
               ],
-            ),
-          ),
-          SizedBox(height: 1),
-          Expanded(
-            child: Container(
-              width: double.infinity,
-              margin: EdgeInsets.all(40.0),
-              child: Stack(
-                children: [
-                  PageView.builder(
-                    controller: _pageController,
-                    itemCount: _slideImages.length,
-                    itemBuilder: (context, index) {
-                      return Container(
-                        margin: EdgeInsets.all(8.0),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8.0),
-                          color: Colors.transparent,
-                          image: DecorationImage(
-                            image: AssetImage(_slideImages[index]),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Padding(
-                      padding: const EdgeInsets.only(bottom: 16.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: List.generate(
-                          _slideImages.length,
-                              (index) => _buildIndicator(index),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+              options: CarouselOptions(
+                height: 250, // Make sure to set this height to match the height of the SizedBox
+                autoPlay: true,
+                aspectRatio: 2.0,
+                enlargeCenterPage: true,
+                scrollDirection: Axis.horizontal,
+                autoPlayCurve: Curves.fastOutSlowIn,
+                autoPlayAnimationDuration: Duration(milliseconds: 1300),
+                viewportFraction: 0.8,
               ),
             ),
           ),
-          SizedBox(height: 16),
-          Text(
-            'Book A Ride with Low Fare',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
+          SizedBox(height: 10),
+          Center(
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Text(
+                  'Book a ride with fair rates',
+                  textAlign: TextAlign.center,
+                  textScaleFactor: 2.0,
+                  style: TextStyle(
+                    fontSize: 9,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.black54,
+                  ),
+                ),
+              ),
             ),
           ),
-          SizedBox(height: 16),
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.75,
-            child: ElevatedButton(
-              onPressed: () {
-                // TODO: Handle login as customer
-              },
-              child: Text('Login As Customer'),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25.0),
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.all(0.0),
+                child: Text(
+                  'We aim to provide you the best of ridding services.',
+                  textAlign: TextAlign.center,
+                  textScaleFactor: 2.0,
+                  style: TextStyle(
+                    fontSize: 7,
+                    fontWeight: FontWeight.w100,
+                    color: Colors.black54,
+                  ),
+                ),
+              ),
             ),
           ),
-          SizedBox(height: 16),
+
+          SizedBox(height: 30),
           SizedBox(
-            width: MediaQuery.of(context).size.width * 0.75,
+            width: 350.0,
+            height: 50.0,
             child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+
+                backgroundColor: const Color(0xff0026AB),
+              ),
+
               onPressed: () {
-                // TODO: Handle login as driver
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => LoginPageCustomer(),
+                  ),
+                );
               },
-              child: Text('Login As Driver'),
+              child: Text('Login as User',
+                style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: (17),
+                ),
+              ),
+
+            ),
+          ),
+          SizedBox(height: 10,),
+          SizedBox(
+            width: 350.0,
+            height: 50.0,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xff0026AB),
+              ),
+              onPressed: () {},
+              child: Text('Login as Driver',
+                style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: (17),
+                ) ,
+              ),
+
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _buildIndicator(int index) {
-    return Container(
-      width: 8.0,
-      height: 8.0,
-      margin: EdgeInsets.symmetric(horizontal: 4.0),
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: _currentPage == index ? Colors.blue : Colors.grey,
       ),
     );
   }

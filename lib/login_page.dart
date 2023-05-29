@@ -1,8 +1,104 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:myapp/CustomerScreens/dashboard_page.dart';
+import 'package:myapp/Widgets/ProgressDialog.dart';
+import 'package:myapp/global/global.dart';
+import 'package:myapp/splash-screen.dart';
 
-class LoginPage extends StatelessWidget{
-  const LoginPage({super.key});
+class LoginPageCustomer extends StatefulWidget{
+  const LoginPageCustomer({super.key});
+
+  @override
+  State<LoginPageCustomer> createState() => _LoginPageCustomerState();
+}
+
+class _LoginPageCustomerState extends State<LoginPageCustomer> {
+
+  TextEditingController emailTextEditingController = TextEditingController();
+
+  TextEditingController passwordTextEditingController = TextEditingController();
+
+
+  void validateForm(BuildContext context)
+  {
+
+
+    bool isValidEmail(String email) {
+      // Use a regular expression to validate the email format
+      final emailRegex =
+      RegExp(r'^[\w-]+(\.[\w-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,})$');
+      return emailRegex.hasMatch(email);
+
+    }
+
+
+
+
+
+     if (emailTextEditingController.text.trim().isEmpty) {
+      Fluttertoast.showToast(msg: "Please enter your email");
+    } else if (!isValidEmail(emailTextEditingController.text)) {
+      Fluttertoast.showToast(msg: "Please enter a valid email address");
+
+    }
+
+// Helper function to validate email format
+    else if (passwordTextEditingController.text.isEmpty) {
+      Fluttertoast.showToast(msg: "Please enter your password");
+    }
+
+
+    else
+    {
+
+      SaveDriverInfoNow();
+
+    }
+
+
+  }
+
+  SaveDriverInfoNow() async
+  {
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext c)
+        {
+          return ProgressDialog(message: "Precessing, Please wait");
+        }
+    );
+
+    final User? firebaseUser = (
+        await fAuth.signInWithEmailAndPassword(
+          email: emailTextEditingController.text.trim(),
+          password: passwordTextEditingController.text.trim(),
+        ).catchError((msg){
+          Navigator.pop(context);
+          Fluttertoast.showToast(msg: "Error: " + msg.toString());
+        })
+    ).user;
+
+    if(firebaseUser != null)
+    {
+
+
+
+      currentFirebaseUser = firebaseUser;
+      Fluttertoast.showToast(msg: "Account Logged in");
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) =>  SplashScreen()),
+      );
+    }
+    else
+    {
+      Navigator.pop(context);
+      Fluttertoast.showToast(msg: "Account Login Failed.");
+    }
+  }
+
 
   @override
   Widget build(BuildContext context){
@@ -33,6 +129,7 @@ class LoginPage extends StatelessWidget{
             Container(
               margin: EdgeInsets.only(left: 24, right: 24, top: 20),
               child: TextField(
+                controller: emailTextEditingController,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
@@ -44,6 +141,7 @@ class LoginPage extends StatelessWidget{
                 Container(
                   margin: EdgeInsets.all(24),
                   child: TextField(
+                    controller: passwordTextEditingController,
                     obscureText: true,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
@@ -80,10 +178,7 @@ class LoginPage extends StatelessWidget{
                       textDirection: TextDirection.rtl,
                       child:  ElevatedButton.icon(
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => const DashboardPage()),
-                          );
+                          validateForm(context);
                         },
                         icon: const Icon(
                           Icons.arrow_circle_right_sharp,

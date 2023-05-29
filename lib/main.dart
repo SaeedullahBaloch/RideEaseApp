@@ -7,6 +7,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/CustomerScreens/dashboard_page.dart';
+import 'package:myapp/DriverScreens/verification-driver.dart';
 import 'package:myapp/PhoneSignUp.dart';
 import 'package:myapp/destination.dart';
 import 'package:myapp/intro.dart';
@@ -15,6 +16,7 @@ import 'package:myapp/CustomerScreens/signup_page_Customer.dart';
 import 'package:myapp/DriverScreens/signup_page_Driver.dart';
 import 'package:myapp/CustomerScreens/BookRideScreen.dart';
 import 'package:myapp/reached-at-location.dart';
+import 'package:myapp/splash-screen.dart';
 
 import 'firebase_options.dart';
 void main() async {
@@ -28,9 +30,11 @@ void main() async {
 class MyApp extends StatelessWidget {
 	@override
 	Widget build(BuildContext context) {
+
 		return MaterialApp(
+
 			debugShowCheckedModeBanner: false,
-			home: PhoneSignUpScreen(),
+			home: SplashScreen(),
 		);
 	}
 }

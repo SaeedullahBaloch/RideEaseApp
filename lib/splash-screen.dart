@@ -1,6 +1,12 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:myapp/CustomerScreens/BookRideScreen.dart';
+import 'package:myapp/CustomerScreens/signup_page_Customer.dart';
+import 'package:myapp/DriverScreens/signup_page_Driver.dart';
+import 'package:myapp/PhoneSignUp.dart';
+import 'package:myapp/global/global.dart';
+import 'package:myapp/login_page.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -11,11 +17,19 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 8), () {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => SplashScreen()),
-      );
+    Timer(Duration(seconds: 3), () async{
+
+      if(await fAuth.currentUser!= null )
+        {
+          currentFirebaseUser = fAuth.currentUser;
+          Navigator.push(context, MaterialPageRoute(builder: (c)=> BookRideScreen() ));
+        }
+      else
+        {
+          Navigator.push(context, MaterialPageRoute(builder: (c)=> LoginPageCustomer()));
+        }
+
+
     });
   }
 
@@ -46,7 +60,7 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
             SizedBox(height: 30),
             Image.asset(
-              'assets/page-1/images/-zog.png',
+              'assets/images/Slide1.png',
               width: 368,
               height: 269,
               fit: BoxFit.cover,

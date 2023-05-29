@@ -26,7 +26,7 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Image.asset('assets/images/RideEase.png'),
+        title: Image.asset('lib/images/RideEase.png'),
         toolbarHeight: 80,
         centerTitle: true,
         backgroundColor: Colors.white,
@@ -55,7 +55,7 @@ class MyHomePage extends StatelessWidget {
                  Column(
                    children: [
                      Padding(padding: const EdgeInsets.all(10),
-                     child : Image(image: AssetImage('assets/images/Car.png')),
+                     child : Image(image: AssetImage('lib/images/Car.png')),
                     ),
                      Text('Ride Mini'),
                    ],
@@ -63,7 +63,7 @@ class MyHomePage extends StatelessWidget {
                  Column(
                    children: [
                      Padding(padding: const EdgeInsets.all(10),
-                       child : Image(image: AssetImage('assets/images/Car.png')),
+                       child : Image(image: AssetImage('lib/images/Car.png')),
                      ),
                      Text('Ride AC'),
                    ],
@@ -71,7 +71,7 @@ class MyHomePage extends StatelessWidget {
                  Column(
                    children: [
                      Padding(padding: const EdgeInsets.all(10),
-                       child : Image(image: AssetImage('assets/images/Car.png')),
+                       child : Image(image: AssetImage('lib/images/Car.png')),
                      ),
                      Text('VIP'),
                    ],

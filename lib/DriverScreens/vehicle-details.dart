@@ -67,7 +67,7 @@ class VehicleDetail extends StatelessWidget {
     children: [
     TextField(
     decoration: InputDecoration(
-    hintText: "Vehicle Make",
+    hintText: "Vehicle Maker",
     border: OutlineInputBorder(
     borderRadius: BorderRadius.circular(11),
     borderSide: BorderSide(color: Colors.black87),
@@ -87,7 +87,7 @@ class VehicleDetail extends StatelessWidget {
     SizedBox(height: 20),
     TextField(
     decoration: InputDecoration(
-    hintText: "Vehicle Variant",
+    hintText: "Vehicle Type",
     border: OutlineInputBorder(
     borderRadius: BorderRadius.circular(11),
     borderSide: BorderSide(color: Colors.black87),
